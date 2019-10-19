@@ -3,25 +3,21 @@
 
 # In[19]:
 
-
 import pandas as pd
 from splinter import Browser
 import requests
 from bs4 import BeautifulSoup
+import time
 
 def Scrape():
 
-
-# In[20]:
-
-
     mars_omnibus = {}
 
+# In[20]:
 
     # ### News about Mars from Nasa ###
 
 # In[22]:
-
 
     #Create an Executable Path to Chromedriver.exe and Select the Browser to Use with Splinter
     executable_path = {"executable_path": "chromedriver.exe"}
@@ -31,27 +27,29 @@ def Scrape():
     mars_news_url = "https://mars.nasa.gov/news/"
     browser.visit(mars_news_url)
 
+    time.sleep(5)
+
     #Parse the Site and Create an Object with Beautiful Soup
     soup = BeautifulSoup(browser.html, "html.parser")
     #print(type(soup))
 
     #Use BeautifulSoup to Navigate through the HTML of the Site to Locate Title and Paragraph
-    news_title = soup.find("div", class_="content_title").get_text()
-    news_paragraph = soup.find("div", class_="article_teaser_body").get_text()
+    news_title = soup.find("div", class_="content_title").text
+    news_paragraph = soup.find("div", class_="article_teaser_body").text
 
     mars_omnibus["title"] = news_title
     mars_omnibus["paragraph"] = news_paragraph
 
     #print(mars_omnibus)
 
-    print(news_title)
-    print(news_paragraph)
+    #print(news_title)
+    #print(news_paragraph)
 
+    browser.quit()
 
     # ### Image of Mars from Jet Propulsion Laboratory ###
 
 # In[23]:
-
 
     #Create an Executable Path to Chromedriver.exe and Select the Browser to Use with Splinter
     executable_path = {"executable_path": "chromedriver.exe"}
@@ -60,6 +58,8 @@ def Scrape():
     #Use Browser from Splinter to Visit the Site of Jet Propulsion Laboratory
     mars_image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(mars_image_url)
+
+    time.sleep(5)
 
     #Parse the Site and Create an Object with Beautiful Soup
     soup = BeautifulSoup(browser.html, "html.parser")
@@ -73,13 +73,13 @@ def Scrape():
 
     #print(mars_omnibus)
 
-    print(featured_image_url)
+    #print(featured_image_url)
 
+    browser.quit()
 
     # ### Weather on Mars from Twitter ###
 
 # In[24]:
-
 
     #Create an Executable Path to Chromedriver.exe and Select the Browser to Use with Splinter
     executable_path = {"executable_path": "chromedriver.exe"}
@@ -88,6 +88,8 @@ def Scrape():
     #Use Browser from Splinter to Visit the Site for Mars on Twitter
     mars_weather_url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(mars_weather_url)
+
+    time.sleep(5)
 
     #Parse the Site and Create an Object with Beautiful Soup
     soup = BeautifulSoup(browser.html, "html.parser")
@@ -108,11 +110,11 @@ def Scrape():
 
     #print(mars_omnibus)
 
+    browser.quit()
 
     # ### Facts about Mars from Space Facts ###
 
 # In[25]:
-
 
     #Create an Executable Path to Chromedriver.exe and Select the Browser to Use with Splinter
     executable_path = {"executable_path": "chromedriver.exe"}
@@ -121,6 +123,8 @@ def Scrape():
     #Use Browser from Splinter to Visit the Site of Space Facts
     mars_facts_url = "https://space-facts.com/mars/"
     browser.visit(mars_facts_url)
+
+    time.sleep(5)
 
     #Use the .read_html() Function of Pandas to Read the HTML Code of the Site
     mars_facts_read = pd.read_html(mars_facts_url)
@@ -140,13 +144,13 @@ def Scrape():
 
     #print(mars_omnibus)
 
-    print(mars_facts_html)
+    #print(mars_facts_html)
 
+    browser.quit()
 
     # ### Hemispheres of Mars from Astrogeology ###
 
 # In[26]:
-
 
     #Create an Executable Path to Chromedriver.exe and Select the Browser to Use with Splinter
     executable_path = {"executable_path": "chromedriver.exe"}
@@ -155,6 +159,8 @@ def Scrape():
     #Use Browser from Splinter to Visit the Site of Astrogeology
     mars_hemispheres_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     browser.visit(mars_hemispheres_url)
+
+    time.sleep(5)
 
     #Parse the Site and Create an Object with Beautiful Soup
     soup = BeautifulSoup(browser.html, "html.parser")
@@ -181,6 +187,8 @@ def Scrape():
 
     #print(mars_omnibus)
     
-    print(mars_hemispheres)
+    #print(mars_hemispheres)
 
+    browser.quit()
+    
     return mars_omnibus
