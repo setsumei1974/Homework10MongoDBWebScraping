@@ -138,7 +138,7 @@ def Scrape():
     #print(mars_facts_df)
 
     #Use the .to_html() Function of Pandas to Convert the Dataframe to HTML Code
-    mars_facts_html = mars_facts_df.to_html(header = False, index = False)
+    mars_facts_html = mars_facts_df.to_html(header = True, index = False)
 
     mars_omnibus["facts"] = mars_facts_html
 

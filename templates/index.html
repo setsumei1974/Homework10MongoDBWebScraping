@@ -7,7 +7,7 @@
     <link rel="icon" type="image" href="https://www.ancient.eu/img/r/p/500x600/2119.jpg">
     <title>Martius rasus</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css">
 </head> 
 <body class="text-white" style="background-color: #620000;">
     <div class="container">
@@ -24,8 +24,8 @@
                 </div>
                 <div class="media-body" id="martiannews">
                     <h4 class="media-heading" style="color: #FFB5B5">Martian News</h4>
-                    <h5>{{mars_omnibus.news_title}}</h5>
-                    <p>{{mars_omnibus.news_paragraph}}</p>
+                    <h5>{{mars_omnibus.title}}</h5>
+                    <p>{{mars_omnibus.paragraph}}</p>
                 </div>
             </div>            
         </div>
@@ -36,11 +36,11 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6" id="martianimage">
             <h4 style="text-align: center;">Recent Image from Mars</h4>
-                <img src="{{mars_omnibus.featured_image_url}}">
+                <img src="{{mars_omnibus.image}}" height="360" width="540">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6" id="martianweather">
                 <h4 style="text-align: center;">Current Weather on Mars</h4>
-                <p>{{mars_omnibus.mars_weather}}</p>
+                <p style="text-align: center">{{mars_omnibus.weather}}</p>
             </div>
         </div>
     </div>            
@@ -52,7 +52,7 @@
                 </div>
                 <div class="media-body" id="martianfacts">
                     <h4 class="media-heading" style="color: #FFB5B5">Facts about Mars</h4>
-                    {{mars_omnibus.mars_facts_html}}
+                    {{mars_omnibus.facts | safe}}
                 </div>
             </div>            
         </div>
@@ -62,7 +62,7 @@
             <hr>
             <div class="col-md-12">
                 <div class="row" id="martianhemispheres">
-                    {% for hemisphere in mars_omnibus.mars_hemishperes %}
+                    {% for hemisphere in mars_omnibus.hemispheres %}
                     <div class="col-md-6">
                         <div class="card text-white bg-dark" style="margin: 30px;">
                             <img class="card-img-top" src="{{ hemisphere.img_url }}" />
